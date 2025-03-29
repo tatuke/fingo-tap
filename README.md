@@ -10,18 +10,16 @@ Supports both:
 
 ## ✨ Features
 
-- 🧠 Natural Language to Shell Command (via OpenAI API)
-- 🖥️ Works on macOS, Linux, and Windows (Python-based)
-- ✅ Confirmation before execution
-- 💬 Interactive chat mode for iterative CLI tasks
-- 🎨 Colored terminal output for better readability
-- 🪟 Optional tmux split-pane workflow (chat left, shell right)
+- Natural Language to Shell Command (via OpenAI API)
+- Works on macOS, Linux, and Windows (Python-based)
+- Confirmation before execution
+- Interactive chat mode for iterative CLI tasks
+- Colored terminal output for better readability
+- Optional tmux split-pane workflow (chat left, shell right)
 
 ---
 
 ## Installation
-
-
 
 #### Install via pip
 
