@@ -18,8 +18,8 @@ openai.api_key = os.getenv("OPENAI_API_KEY", "YOUR-OPENAI-KEY-HERE")
 if not openai.api_key:
     # in order to use application, you need to set OPENAI_API_KEY
     # provide example usage
-    print(f"{RED}In order to use this application, you need to set OPENAI_API_KEY environment variable.{RESET} 
-          \n"
+    print(f"{RED}In order to use this application, you need to set OPENAI_API_KEY environment variable.{RESET}"
+          "\n"
           f"{RED}Example: export OPENAI_API_KEY=your_openai_key{RESET}")
     sys.exit(1)
 
@@ -92,7 +92,7 @@ def one_shot_mode(prompt, do_execute=True):
         print(f"{GREEN}AI suggests command:{RESET} {cmd}")
         if do_execute:
             # Confirm or auto-run:
-            confirm = input("Execute this command? (y/n) ").strip().lower()
+            confirm = input("Execute this command? \n Press 'Enter' for yes").strip().lower()
             if confirm == 'y' or confirm == '':
                 run_shell_command(cmd)
     else:
