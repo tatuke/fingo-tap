@@ -54,10 +54,9 @@ One-shot prompt
 ai "untar backup.tar.gz"
 ```
 
-✅ AI suggests a shell command
-✅ Asks for confirmation
-✅ Runs the command if you approve
-
+- AI suggests a shell command
+- Asks for confirmation
+- Runs the command if you approve
 ---
 
 Interactive mode
