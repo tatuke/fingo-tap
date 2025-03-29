@@ -13,9 +13,9 @@ RED = "\033[91m"
 BLUE = "\033[94m"
 RESET = "\033[0m"
 
-openai.api_key = os.getenv("OPENAI_API_KEY", "YOUR-OPENAI-KEY-HERE")
+API_KEY = os.getenv("OPENAI_API_KEY", "")
 
-if not openai.api_key:
+if not API_KEY:
     # in order to use application, you need to set OPENAI_API_KEY
     # provide example usage
     print(f"{RED}In order to use this application, you need to set OPENAI_API_KEY environment variable.{RESET}"
@@ -34,7 +34,6 @@ def call_openai_for_command(user_message, chat_history=None):
     if chat_history is None:
         chat_history = []
 
-    # We add a system message to instruct the model to return only valid shell commands, etc.
     system_msg = {
         "role": "system",
         "content": (
@@ -44,14 +43,11 @@ def call_openai_for_command(user_message, chat_history=None):
             "No explanations, just the command."
         )
     }
-    # Then we add the user prompt
     user_msg = {"role": "user", "content": user_message}
 
-    # Construct the full message set
     messages = [system_msg] + chat_history + [user_msg]
 
-    # Call OpenAI API
-    client = openai.OpenAI()
+    client = openai.OpenAI(api_key=API_KEY)
 
     try:
         response = client.chat.completions.create(
