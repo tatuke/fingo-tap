@@ -15,6 +15,13 @@ RESET = "\033[0m"
 
 openai.api_key = os.getenv("OPENAI_API_KEY", "YOUR-OPENAI-KEY-HERE")
 
+if not openai.api_key:
+    # in order to use application, you need to set OPENAI_API_KEY
+    # provide example usage
+    print(f"{RED}In order to use this application, you need to set OPENAI_API_KEY environment variable.{RESET} 
+          \n"
+          f"{RED}Example: export OPENAI_API_KEY=your_openai_key{RESET}")
+    sys.exit(1)
 
 def call_openai_for_command(user_message, chat_history=None):
     """
