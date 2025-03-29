@@ -23,7 +23,7 @@ Supports both:
 
 
 
-#### Install Via pip
+#### Install via pip
 
 ```
 pip install ghost-in-the-shell
