@@ -32,8 +32,8 @@ pip install ghost-in-the-shell
 #### Clone & Install
 
 ```bash
-git clone https://github.com/yourname/ai-shell.git
-cd ai-shell
+git clone https://github.com/codingmoh/ghost_in_the_shell.git
+cd ghost_in_the_shell
 pip install .
 ```
 
