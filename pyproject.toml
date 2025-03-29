@@ -1,0 +1,17 @@
+[project]
+name = "ghost-in-the-shell"
+version = "0.1.1"
+description = "CLI with OpenAI integration"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.69.0",
+    "prompt_toolkit",
+]
+
+[project.scripts]
+ai = "ai_shell:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
