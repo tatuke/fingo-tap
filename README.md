@@ -66,8 +66,7 @@ Interactive mode
 
 ai -i
 
-🧠 Open a chat session right in the terminal.
-💬 Type natural language instructions like:
+Open a chat session right in the terminal. Type natural language instructions like:
 
 You: compress all PNGs in this folder
 AI suggests: tar -czvf images.tar.gz *.png
@@ -92,13 +91,13 @@ use your normal shell
 ```
 ---
 
-🛡️ Security Notice
+### Security Notice
 
 Always review AI-generated commands before executing them.
 
 ---
 
-🧱 Future Plans
+### Future Plans
    * Voice input via Whisper
    * Local LLM support (e.g., llama.cpp)
    * Fancy TUI with textual or rich
@@ -107,13 +106,13 @@ Always review AI-generated commands before executing them.
 
 ---
 
-🧑‍💻 Contributing
+### Contributing
 
 PRs welcome! Ideas, issues, improvements — all appreciated.
 
 ---
 
-📝 License
+### License
 
 MIT
 
