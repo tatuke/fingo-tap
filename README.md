@@ -3,7 +3,7 @@
 **AI Shell** is a cross-platform command-line assistant that lets you use natural language to run shell commands. Whether you’re on macOS, Linux, or Windows, just type what you want to do — AI Shell will suggest the correct shell command, ask for your confirmation, and optionally execute it.
 
 Supports both:
-- **One-shot mode**: `ai "untar this file"` → returns shell command
+- **One-shot mode**: `ai "archive.tar"` → returns shell command
 - **Interactive mode**: `ai -i` → opens a terminal chat with the AI
 
 ---
