@@ -27,6 +27,7 @@ Supports both:
 git clone https://github.com/yourname/ai-shell.git
 cd ai-shell
 pip install .
+```
 
 Now you can use the ai command globally.
 
