@@ -21,13 +21,20 @@ Supports both:
 
 ## Installation
 
-#### Install via pip
+### Option 1: Install via Homebrew (recommended for macOS)
 
+```bash
+brew tap codingmoh/ghost-in-the-shell
+brew install ghost-in-the-shell
 ```
+
+### Option 2: Install via pip (any OS)
+
+```bash
 pip install ghost-in-the-shell
 ```
 
-#### Clone & Install
+### Option 3: Clone & Install locally
 
 ```bash
 git clone https://github.com/codingmoh/ghost_in_the_shell.git
@@ -35,49 +42,59 @@ cd ghost_in_the_shell
 pip install .
 ```
 
-Now you can use the ai command globally.
+Now you can use the `ai` command globally.
 
-### 2. Set OpenAI API Key
-
-You need an OpenAI API key to use this tool.
-
-```
-export OPENAI_API_KEY="your-api-key-here"
-```
 ---
 
-🚀 Usage
+## 🔑 Set OpenAI API Key
 
-One-shot prompt
+You need an OpenAI API key to use this tool:
 
+```bash
+export OPENAI_API_KEY="your-api-key-here"
 ```
+
+You can also add this line to your `.bashrc`, `.zshrc`, or `.bash_profile`.
+
+---
+
+## Usage
+
+### One-shot prompt
+
+```bash
 ai "untar backup.tar.gz"
 ```
 
-- AI suggests a shell command
-- Asks for confirmation
-- Runs the command if you approve
+✅ AI suggests a shell command  
+✅ Asks for confirmation  
+✅ Runs the command if you approve
+
 ---
 
-Interactive mode
+### Interactive mode
 
+```bash
 ai -i
+```
 
-Open a chat session right in the terminal. Type natural language instructions like:
+🧠 Open a chat session right in the terminal.  
+💬 Type natural language instructions like:
 
+```
 You: compress all PNGs in this folder
-AI suggests: tar -czvf images.tar.gz *.png
+AI: tar -czvf images.tar.gz *.png
+```
 
-
-Type exit or quit to leave.
+Type `exit` or `quit` to leave.
 
 ---
 
-tmux Split Mode (optional)
+### 🪟 tmux Split Mode (optional)
 
 Want to split your terminal into chat + shell?
 
-```
+```bash
 tmux
 # Then split horizontally:
 Ctrl-B %
@@ -86,35 +103,35 @@ ai -i
 # In right pane:
 use your normal shell
 ```
+
 ---
 
-### Security Notice
+## 🛡️ Security Notice
 
 Always review AI-generated commands before executing them.
 
 ---
 
-### Future Plans
-   * Voice input via Whisper
-   * Local LLM support (e.g., llama.cpp)
-   * Fancy TUI with textual or rich
-   * Command history and undo
-   * Plugin system for workflows
+## 🧱 Future Plans
+
+- Voice input via Whisper
+- Local LLM support (e.g., llama.cpp)
+- Fancy TUI with textual or rich
+- Command history and undo
+- Plugin system for workflows
 
 ---
 
-### Contributing
+## Contributing
 
 PRs welcome! Ideas, issues, improvements — all appreciated.
 
 ---
 
-### License
+## 📝 License
 
 MIT
 
 ---
-❤️ Credits
 
-Built with love and caffeine by codingmoh.
-
+❤️ Built with love and caffeine by [codingmoh](https://github.com/codingmoh).
