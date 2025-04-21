@@ -1,7 +1,7 @@
 [project]
 name = "open_codex"
-version = "0.1.9"
-description = "CLI with OSS LLM integration"
+version = "0.1.12"
+description = "AI CLI with OSS LLM integration"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -23,3 +23,6 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"open_codex" = ["resources/*.txt"]

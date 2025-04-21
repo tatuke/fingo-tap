@@ -1,8 +1,7 @@
 # Open Codex
 
-<h1 align="center">Open Codex Codex CLI</h1>
+<h1 align="center">Open Codex CLI</h1>
 <p align="center">Lightweight coding agent that runs in your terminal</p>
-
 <p align="center"><code>
 brew install brew tap codingmoh/open-codex
 brew install open-codex

@@ -1,3 +1,4 @@
+from importlib.resources import files
 
 from open_codex.agents.phi_4_mini import AgentPhi4Mini
 from open_codex.interfaces.llm_agent import LLMAgent
@@ -6,8 +7,8 @@ class AgentBuilder:
 
     @staticmethod
     def get_agent() -> LLMAgent:
-        prompt = AgentBuilder.read_file("src/open_codex/resources/prompt.txt")
-        return AgentPhi4Mini(system_prompt=prompt)
+        system_prompt = files("open_codex.resources").joinpath("prompt.txt").read_text(encoding="utf-8")
+        return AgentPhi4Mini(system_prompt=system_prompt)
     
     @staticmethod
     def read_file(file_path: str) -> str:
