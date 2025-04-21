@@ -1,16 +1,18 @@
 [project]
-name = "ghost-in-the-shell"
+name = "open_codex"
 version = "0.1.7"
-description = "CLI with OpenAI integration"
+description = "CLI with OSS LLM integration"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "openai>=1.69.0",
+    "huggingface-hub>=0.30.2",
+    "llama-cpp-python>=0.3.8",
     "prompt_toolkit",
+    "pyperclip>=1.9.0",
 ]
 
 [project.scripts]
-ai = "main:main"
+ai = "open_codex.main:main"
 
 [build-system]
 requires = ["setuptools", "wheel"]
