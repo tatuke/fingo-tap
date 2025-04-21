@@ -1,128 +1,102 @@
-# Ghost in the Shell
+# Open Codex
 
-**Ghost in the Shell** is a cross-platform command-line assistant that lets you use natural language to run shell commands. Whether you’re on macOS, Linux, or Windows, just type what you want to do — AI Shell will suggest the correct shell command, ask for your confirmation, and optionally execute it.
+<h1 align="center">Open Codex Codex CLI</h1>
+<p align="center">Lightweight coding agent that runs in your terminal</p>
 
-Supports both:
-- **One-shot mode**: `ai "archive.tar"` → returns shell command
-- **Interactive mode**: `ai -i` → opens a terminal chat with the AI
+<p align="center"><code>
+brew install brew tap codingmoh/open-codex
+brew install open-codex
+</code></p>
+
+![Codex demo GIF using: codex "explain this codebase to me"](./.github/demo.gif)
 
 ---
 
+**Open Codex** is a fully open-source command-line AI assistant inspired by OpenAI Codex, supporting local language models like `phi-4-mini`.
+
+No API key is required. Everything runs locally.
+
+Supports:
+- **One-shot mode**: `open-codex "list all folders"` -> returns shell command
+- 🧠 Local-only execution using supported OS models (currently `phi-4-mini`)
+
+---
 ## ✨ Features
 
-- Natural Language to Shell Command (via OpenAI API)
+- Natural Language to Shell Command (via local models)
 - Works on macOS, Linux, and Windows (Python-based)
 - Confirmation before execution
-- Interactive chat mode for iterative CLI tasks
+- Add to clipboard / abort / execute prompt
+- One-shot interaction mode (interactive and function-calling coming soon)
 - Colored terminal output for better readability
-- Optional tmux split-pane workflow (chat left, shell right)
-
----
-
-## Installation
-
-### Option 1: Install via Homebrew (recommended for macOS)
-
-```bash
-brew tap codingmoh/ghost-in-the-shell
-brew install ghost-in-the-shell
-```
-
-### Option 2: Install via pip (any OS)
-
-```bash
-pip install ghost-in-the-shell
-```
-
-### Option 3: Clone & Install locally
-
-```bash
-git clone https://github.com/codingmoh/ghost_in_the_shell.git
-cd ghost_in_the_shell
-pip install .
-```
-
-Now you can use the `ai` command globally.
-
----
-
-## 🔑 Set OpenAI API Key
-
-You need an OpenAI API key to use this tool:
-
-```bash
-export OPENAI_API_KEY="your-api-key-here"
-```
-
-You can also add this line to your `.bashrc`, `.zshrc`, or `.bash_profile`.
-
----
-
-## Usage
-
-### One-shot prompt
-
-```bash
-ai "untar backup.tar.gz"
-```
-
-✅ AI suggests a shell command  
-✅ Asks for confirmation  
-✅ Runs the command if you approve
-
----
-
-### Interactive mode
-
-```bash
-ai -i
-```
-
-🧠 Open a chat session right in the terminal.  
-💬 Type natural language instructions like:
-
-```
-You: compress all PNGs in this folder
-AI: tar -czvf images.tar.gz *.png
-```
-
-Type `exit` or `quit` to leave.
-
----
-
-### 🪟 tmux Split Mode (optional)
-
-Want to split your terminal into chat + shell?
-
-```bash
-tmux
-# Then split horizontally:
-Ctrl-B %
-# In left pane:
-ai -i
-# In right pane:
-use your normal shell
-```
-
----
-
-## 🛡️ Security Notice
-
-Always review AI-generated commands before executing them.
 
 ---
 
 ## 🧱 Future Plans
 
+- Interactive, context aware mode
+- Fancy TUI with `textual` or `rich`
+- Add support for additional OSS Models
+- Full interactive chat mode
+- Function-calling support
 - Voice input via Whisper
-- Local LLM support (e.g., llama.cpp)
-- Fancy TUI with textual or rich
 - Command history and undo
 - Plugin system for workflows
 
 ---
 
-## Contributing
+
+## 📦 Installation
+
+
+### 🔹 Option 1: Install via Homebrew (Recommended for MacOS)
+
+```bash
+brew tap codingmoh/open-codex
+brew install open-codex
+```
+
+
+### 🔹 Option 2: Install via pipx (cross-platform)
+
+```bash
+pipx install open-codex
+```
+
+### 🔹 Option 3: Clone & Install locally
+
+```bash
+git clone https://github.com/codingmoh/open-codex.git
+cd open_codex
+pip install .
+```
+
+
+Once installed, you can use the `open-codex` CLI globally.
+
+---
+
+## 🚀 Usage
+
+### One-shot mode
+
+```bash
+open-codex "untar file abc.tar"
+```
+
+✅ Codex suggests a shell command  
+✅ Asks for confirmation / add to clipboard / abort  
+✅ Executes if approved
+
+---
+
+## 🛡️ Security Notice
+
+All models run locally. Commands are only executed after explicit approval.
+
+---
+
+## 🧑‍💻 Contributing
 
 PRs welcome! Ideas, issues, improvements — all appreciated.
 
@@ -135,3 +109,4 @@ MIT
 ---
 
 ❤️ Built with love and caffeine by [codingmoh](https://github.com/codingmoh).
+

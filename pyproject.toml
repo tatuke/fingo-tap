@@ -1,6 +1,6 @@
 [project]
 name = "open_codex"
-version = "0.1.7"
+version = "0.1.9"
 description = "CLI with OSS LLM integration"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -12,8 +12,14 @@ dependencies = [
 ]
 
 [project.scripts]
-ai = "open_codex.main:main"
+open-codex = "open_codex.main:main"
 
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
