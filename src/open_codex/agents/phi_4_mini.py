@@ -7,21 +7,39 @@ import os
 from huggingface_hub import hf_hub_download # type: ignore
 
 class AgentPhi4Mini(LLMAgent):
-    def __init__(self, system_prompt: str):
-        model_filename = "Phi-4-mini-instruct-Q3_K_L.gguf"
-        repo_id = "lmstudio-community/Phi-4-mini-instruct-GGUF"
-
-        print("\n⏬ Downloading model from Hugging Face...")
+    def download_model(self, model_filename: str,
+                        repo_id: str, 
+                        local_dir: str) -> str:
+        print(
+            "\n🤖 Thank you for using Open Codex!\n"
+            "📦 For the first run, we need to download the model from Hugging Face.\n"
+            "⏬ This only happens once – it’ll be cached locally for future use.\n"
+            "🔄 Sit tight, the download will begin now...\n"
+        )
+        print("\n⏬ Downloading model phi4-mini ...")
+        
         start = time.time()
         model_path:str = hf_hub_download(
             repo_id=repo_id,
             filename=model_filename,
-            local_dir=os.path.expanduser("~/.cache/open-codex"),
-            local_dir_use_symlinks=False,
-            resume_download=True
+            local_dir=local_dir,
         )
         end = time.time()
         print(f"✅ Model downloaded in {end - start:.2f}s\n")
+        return model_path
+
+    def __init__(self, system_prompt: str):
+        model_filename = "Phi-4-mini-instruct-Q3_K_L.gguf"
+        repo_id = "lmstudio-community/Phi-4-mini-instruct-GGUF"
+        local_dir = os.path.expanduser("~/.cache/open-codex")
+        model_path = os.path.join(local_dir, model_filename)
+
+        # check if the model is already downloaded
+        if not os.path.exists(model_path):
+            # download the model
+            model_path = self.download_model(model_filename, repo_id, local_dir)
+        else:
+            print(f"We are locking and loading the model for you...\n")
 
         # suppress the stderr output from llama_cpp
         # this is a workaround for the llama_cpp library
