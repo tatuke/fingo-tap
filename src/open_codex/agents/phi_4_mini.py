@@ -1,24 +1,38 @@
+import time
 from typing import List, cast
 from llama_cpp import CreateCompletionResponse, Llama
 from open_codex.interfaces.llm_agent import LLMAgent
 import contextlib
 import os
-
+from huggingface_hub import hf_hub_download # type: ignore
 
 class AgentPhi4Mini(LLMAgent):
     def __init__(self, system_prompt: str):
+        model_filename = "Phi-4-mini-instruct-Q3_K_L.gguf"
+        repo_id = "lmstudio-community/Phi-4-mini-instruct-GGUF"
+
+        print("\n⏬ Downloading model from Hugging Face...")
+        start = time.time()
+        model_path:str = hf_hub_download(
+            repo_id=repo_id,
+            filename=model_filename,
+            local_dir=os.path.expanduser("~/.cache/open-codex"),
+            local_dir_use_symlinks=False,
+            resume_download=True
+        )
+        end = time.time()
+        print(f"✅ Model downloaded in {end - start:.2f}s\n")
+
         # suppress the stderr output from llama_cpp
         # this is a workaround for the llama_cpp library
         # which prints a lot of warnings and errors to stderr
         # when loading the model
         # this is a temporary solution until the library is fixed
         with AgentPhi4Mini.suppress_native_stderr():
-            self.llm: Llama = Llama.from_pretrained( # type: ignore
-                repo_id="lmstudio-community/Phi-4-mini-instruct-GGUF",
-                filename="Phi-4-mini-instruct-Q3_K_L.gguf",
-                additional_files=[],  
-            )
+            self.llm: Llama = Llama(model_path=model_path)  # type: ignore
+
         self.system_prompt = system_prompt
+
 
     def one_shot_mode(self, user_input: str) -> str:
         chat_history = [{"role": "system", "content": self.system_prompt}]
