@@ -236,3 +236,5 @@ pyrightconfig.json
 .idea/
 .vscode/
 brew_formula/
+.pypi_token
+
