@@ -1,12 +1,14 @@
-import time
-from typing import List, cast
-from llama_cpp import CreateCompletionResponse, Llama
-from open_codex.interfaces.llm_agent import LLMAgent
 import contextlib
 import os
-from huggingface_hub import hf_hub_download # type: ignore
+import time
+from typing import List, cast
+
+from huggingface_hub import hf_hub_download  # type: ignore
+from llama_cpp import CreateCompletionResponse, Llama
+from open_codex.interfaces.llm_agent import LLMAgent
 
 class AgentPhi4Mini(LLMAgent):
+    
     def download_model(self, model_filename: str,
                         repo_id: str, 
                         local_dir: str) -> str:
@@ -47,7 +49,10 @@ class AgentPhi4Mini(LLMAgent):
         # when loading the model
         # this is a temporary solution until the library is fixed
         with AgentPhi4Mini.suppress_native_stderr():
-            self.llm: Llama = Llama(model_path=model_path)  # type: ignore
+            lib_dir = os.path.join(os.path.dirname(__file__), "llama_cpp", "lib")
+            self.llm: Llama = Llama(
+                lib_path=os.path.join(lib_dir, "libllama.dylib"),
+                model_path=model_path)  
 
         self.system_prompt = system_prompt
 
