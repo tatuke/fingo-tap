@@ -10,11 +10,11 @@ class AgentBuilder:
             .joinpath("prompt.txt") \
             .read_text(encoding="utf-8")
 
-    @staticmethod
-    def get_phi_agent() -> LLMAgent:
-        from open_codex.agents.phi_4_mini_agent import Phi4MiniAgent
-        system_prompt = AgentBuilder.get_system_prompt()
-        return Phi4MiniAgent(system_prompt=system_prompt)
+    # @staticmethod
+    # def get_phi_agent() -> LLMAgent:
+    #     from open_codex.agents.phi_4_mini_agent import Phi4MiniAgent
+    #     system_prompt = AgentBuilder.get_system_prompt()
+    #     return Phi4MiniAgent(system_prompt=system_prompt)
     
     @staticmethod
     def get_ollama_agent(model: str, host: str) -> LLMAgent:
