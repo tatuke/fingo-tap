@@ -189,6 +189,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+config.example.yaml
+
 
 # Spyder project settings
 .spyderproject
@@ -238,3 +240,4 @@ pyrightconfig.json
 brew_formula/
 .pypi_token
 
+comm.py
