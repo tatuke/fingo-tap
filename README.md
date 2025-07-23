@@ -10,7 +10,9 @@
 ---
 
 **Fingo-tap** This is a CLI assistant as an exercise project for me, designed to help the user, from an initialized system (which of course requires a python environment) to installing every component, preparing various system development and dependency environments.... Help you do everything you want on your current system (not windows, not today), a lightweight AI command line assistant.
+
 **Online LLM** - Sometimes we would like to have a powerful LLM as our assistant to help us output more accurate and executable system commands. Limited by local hardware environment, we can only use it through API. But like most consensus, it is very dangerous to directly expose your working system environment condition and working situation to the service providers on public network. This branch provides Litellm as a proxy connection option, but I still hope you'd better use the online model only for testing or learning system environment, and take care to protect your personal email and password and other real data. This is important!
+
 **Locally**- Apart from preparing the hardware yourself, one of the best ways to use a powerful LLM assistant is to request the deployment of one of the more powerful open source **“coder LLM”** available on the market at your organization or at your employer's place of work. Then you can carry out your tasks in a networked environment trusted by your organization.
 
 ---
