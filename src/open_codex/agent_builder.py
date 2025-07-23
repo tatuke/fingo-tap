@@ -30,9 +30,9 @@ class AgentBuilder:
         from open_codex.agents.litellm_agent import LiteLLMAgent
         system_prompt = AgentBuilder.get_system_prompt()
         return LiteLLMAgent(system_prompt=system_prompt, 
-                            model_name=os.environ['MODEL_NAME'],
-                            api_base=os.environ['API_BASE'],
-                            api_key=os.environ['API_KEY'])
+                            model_name=os.getenv("MODEL_NAME"),
+                            api_base=os.getenv("API_BASE"),
+                            api_key=os.getenv("API_KEY"))
     # print(f"Script directory: {script_dir}")
     # print(f"Dotenv path: {dotenv_path}")
     # print(f"Model name: {os.environ['MODEL_NAME']}")

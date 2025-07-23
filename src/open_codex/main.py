@@ -3,11 +3,14 @@ import argparse
 import subprocess
 import os
 import platform
+import traceback
 from dotenv import load_dotenv
 from importlib.resources import files
 from open_codex.agent_builder import AgentBuilder
+from open_codex.storage_builder import recordcontext,get_db,get_database_url
 from open_codex.interfaces.llm_agent import LLMAgent
-
+from contextlib import contextmanager
+from importlib.resources import as_file
 GREEN = "\033[92m"
 RED = "\033[91m"
 BLUE = "\033[94m"
@@ -17,17 +20,26 @@ RESET = "\033[0m"
 # and returns it as a string. It works on both Windows and Unix systems.
 # and before that let's introduce some key words
 def load_env():
-    if os.path.exists(".env"):
-        load_dotenv(".env")
+    home_env = os.path.expanduser("~/open_codex_config/.env")
+    if os.path.exists(home_env):
+        load_dotenv(home_env)
+        print(f"Loaded .env from {home_env}")
         return True
-    else:
-        return False
-
+    try:
+        with as_file(files("open_codex").joinpath(".env")) as pkg_env:
+            if os.path.exists(pkg_env):
+                load_dotenv(pkg_env)
+                print(f"Loaded .env from package: {pkg_env}")
+                return True
+    except Exception:
+        pass
+    print("No .env file found in any known location.")
+    return False
+    # load_dotenv(dotenv_path=dotenv_path)
 def load_custom_prompt() -> str:
-    if os.path.exists("custom_prompt.txt"):
-        return open("custom_prompt.txt", "r").read()
-    else:
-        return ""
+    return files("open_codex") \
+        .joinpath("custom_prompt.txt") \
+        .read_text(encoding="utf-8")
 
     
 
@@ -62,6 +74,20 @@ def get_system_info():
         except ImportError:
             pass
     return info
+# db session exception
+@contextmanager
+def get_db_session():
+    db = next(get_db())
+    try:
+        yield db
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        print("操作失败，错误详情：")
+        traceback.print_exc()
+        raise e
+    finally:
+        db.close()
 
 def get_user_action():
     print(f"{BLUE}What do you want to do with this command?{RESET}")
@@ -73,14 +99,23 @@ def get_user_action():
 def run_user_action(choice: str, command: str):
     if choice == "c":
         print(f"{GREEN}Copying command to clipboard...{RESET}")
-        subprocess.run("pbcopy", universal_newlines=True, input=command)
+        if platform.system() == "Darwin":  # macOS
+            subprocess.run("pbcopy", universal_newlines=True, input=command)
+        elif platform.system() == "Linux":  # Linux
+            subprocess.run("xclip -selection clipboard", universal_newlines=True, input=command, shell=True)
+        elif platform.system() == "Windows":  # Win
+            subprocess.run("clip", universal_newlines=True, input=command, shell=True)
         print(f"{GREEN}Command copied to clipboard!{RESET}")
     elif choice == "e":
         print(f"{GREEN}Executing command...{RESET}")
         subprocess.run(command, shell=True)
     else: 
         print(f"{RED}Aborting...{RESET}")
-        sys.exit(1)  
+        sys.exit(1)
+        # write down to database
+    with get_db_session() as db:
+        db.add(recordcontext(choice=choice, command=command))
+        db.commit()
 
 def print_response(command: str):
     print(f"{BLUE}Command found:\n=====================")
@@ -89,6 +124,7 @@ def print_response(command: str):
     print(f"{RESET}")
 
 def get_agent(args: argparse.Namespace) -> LLMAgent:
+    # because needed to load env from every time when mission begin
     env_loaded = load_env()
     if not env_loaded:
         print(f"{RED}No .env file found. check ../src/open-codex/.env exists.{RESET}")
@@ -109,6 +145,11 @@ def get_agent(args: argparse.Namespace) -> LLMAgent:
         print(f"{BLUE}Using model: litellm{RESET}")
         return AgentBuilder.get_litellm_agent()
 
+# regx and add user pre-set condition from custom_prompt.txt when get user_input
+# def regx_custom_condition(args: argparse.Namespace) -> LLMAgent:
+
+# kind of diffcult... I'll verify its feasibility in a new project before submitting improvements here. prompt compress hah..20250701
+    
 def run_one_shot(agent: LLMAgent, user_prompt: str, custom_prompt: str, system_info: str) -> str:
     full_prompt = f"{user_prompt}\n\nSystem info: {system_info}\n\nOther conditions:{custom_prompt}"    
     try:
@@ -120,6 +161,9 @@ def run_one_shot(agent: LLMAgent, user_prompt: str, custom_prompt: str, system_i
         print(f"{RED}Unexpected error: {e}{RESET}", file=sys.stderr)
         print(f"{RED}Exiting...{RESET}", file=sys.stderr)
         sys.exit(1)
+
+# def run_multiple_shot
+
 
 def get_help_message():
     return f"""

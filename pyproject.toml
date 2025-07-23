@@ -13,6 +13,7 @@ dependencies = [
     "prompt_toolkit",
     "pyinstaller>=6.13.0",
     "pyperclip>=1.9.0",
+    "sqlalchemy",
 ]
 
 [project.scripts]
@@ -29,4 +30,4 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-"open_codex" = ["resources/*.txt", "resources/.env"]
+"open_codex" = ["resources/*.txt"]

@@ -6,5 +6,3 @@ Important:
 - No shebang
 - No explanations
 - No extra text. Just the command.
-
-User uses MacOS Catalina
