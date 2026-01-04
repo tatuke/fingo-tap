@@ -112,7 +112,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-.trae/
 
 # Translations
 *.mo
@@ -238,6 +237,7 @@ pyrightconfig.json
 
 .idea/
 .vscode/
+.trae/
 brew_formula/
 .pypi_token
 
