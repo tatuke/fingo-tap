@@ -1,0 +1,2 @@
+include src/open_codex/.env
+include src/open_codex/custom_prompt.txt

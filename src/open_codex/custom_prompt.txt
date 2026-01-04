@@ -1,0 +1,18 @@
+-  write down the condition or specific some path that will help AI deal with the task more effectively
+-  example:
+
+  -  p_1 = "/data2/mysql/mysql_daliy_backup/"
+  -  p_2 = "/data2/mysql/conf/"
+  -  p_3 = "/data2/postgres/postgres_daliy_backup/"
+  -  p_4 = "/data2/postgresql/config/"
+- p means path
+  -  You can also use natural language to describe the condition
+  -  like:
+    -  mainly install components on /data2/ directory
+    -  mainly put some download files on /data2/docker_load/ directory,create it if not exist.
+    -  when need to generate password.always using random character and 15-character string. 
+- 因为网络环境在中国大陆，当遇到下载资源拉取镜像等网络问题，使用当中国大陆能用的相对应的开源免登录镜像加速地址替代官方地址
+- 比如docker 拉取镜像使用docker.xuanyuan.run地址取代dockerhub官方地址
+- > "Output Format: Valid JSON array only. **IMPORTANT: Do NOT use any markdown formatting. Do NOT use \`\`\`json. Just return the raw JSON text starting with [ and ending with ].**"
+#  though use natural language, but you should also pay attention to the path and the format of the data and keep your description concise and clear.
+#  so that you or other people can understand and maintain your description easily.

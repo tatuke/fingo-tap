@@ -1,0 +1,34 @@
+[project]
+name = "open_codex"
+version = "0.1.18"
+description = "AI CLI with OSS LLM integration"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "huggingface-hub>=0.30.2",
+    "ollama>=0.4.8",
+    "litellm",
+    "dotenv",
+    "prompt_toolkit",
+    "pyinstaller>=6.13.0",
+    "pyperclip>=1.9.0",
+    "distro>=1.9.0",
+    "sqlalchemy",
+    "pymysql",
+]
+
+[project.scripts]
+open-codex = "open_codex.main:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"open_codex" = "src/open_codex"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"open_codex" = [".env", "custom_prompt.txt", "resources/*.txt"]
